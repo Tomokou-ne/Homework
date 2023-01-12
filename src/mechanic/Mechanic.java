@@ -4,9 +4,6 @@ import driver.Driver;
 import transport.Competing;
 import transport.Transport;
 
-import java.util.Random;
-import java.util.SortedMap;
-
 public class Mechanic <T extends Transport>{
     private final String initials;
     private String company;
