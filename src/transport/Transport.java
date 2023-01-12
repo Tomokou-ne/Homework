@@ -1,10 +1,19 @@
 package transport;
 import driver.Driver;
+import mechanic.Mechanic;
+
 import java.io.FileNotFoundException;
-public abstract class Transport <T extends Driver<Transport> & Competing> {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public abstract class Transport <T extends Driver<Transport> & Competing>{
     private String brand;
     private String model;
     private double engineVolume;
+
+    private final List<Driver<?>> drivers = new ArrayList<>();
+    private final List<Mechanic<?>> mechanics = new ArrayList<>();
 
     public Transport(String brand, String model, double engineVolume) {
         if (brand == null || brand.isEmpty() || brand.isBlank()) {
@@ -38,6 +47,22 @@ public abstract class Transport <T extends Driver<Transport> & Competing> {
     }
     public double getEngineVolume() {
         return engineVolume;
+    }
+
+    public List<Driver<?>> getDrivers() {
+        return drivers;
+    }
+
+    public List<Mechanic<?>> getMechanics() {
+        return mechanics;
+    }
+
+    public void addDriver(Driver<?>... drivers) {
+        this.drivers.addAll(Arrays.asList(drivers));
+    }
+
+    public void addMechanic(Mechanic<?>...mechanics) {
+        this.mechanics.addAll(Arrays.asList(mechanics));
     }
 
     public void startMotion() {

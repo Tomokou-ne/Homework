@@ -42,9 +42,9 @@ public class Mechanic <T extends Transport>{
     public String toString(){
         return "Механик: " + initials + ", работает в компании " + company + ", может работать с транспортом: " + workLicence;
     }
-    public boolean maintenance(T transport){
-        return transport.diagnose();
+    public void maintenance(){
     }
 
     public void fix(){}
+
 }

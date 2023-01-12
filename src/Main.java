@@ -16,6 +16,7 @@ public class Main {
     public static void main(String[] args)  {
 
         Car lada = new Car("Lada", "Grande", 1.7, Car.Carcase.SEDAN);
+
         Car audi = new Car("Audi", "A8 50 L TDI quattro", 3.0, Car.Carcase.HATCHBACK);
         Car bmv = new Car("BMV", "Z8",3.0, Car.Carcase.PICKUP);
         Car kia = new Car("KIA", "Sportage 4 поколение", 2.4, Car.Carcase.CROSSOVER);
@@ -34,9 +35,13 @@ public class Main {
         DriverC c = new DriverC("Колосков Дмитрий Попович", 8, gazel);
         DriverD d = new DriverD("Малицкий Николай Степанович", 4, duo);
 
-        Mechanic m1 = new Mechanic("Василий Петров", "сервисный центр асна", "все типы");
+        Mechanic m1 = new Mechanic("Василий Петров", "СЦ Асна", "все типы");
         Mechanic m2 = new Mechanic("Геннадий Алёшкин", "ООО ЧинИм", "все типы");
         Mechanic m3 = new Mechanic("Анатолий Васнецов", "ИП Гараж-Центр", "все типы");
+
+        lada.addDriver(b);
+        lada.addMechanic(m2);
+
 
         List<Transport> transports = List.of(
                 lada, audi, bmv, kia,
@@ -59,7 +64,13 @@ public class Main {
             System.out.println(value);
         }
 
-        m2.maintenance(zil);
+        printInfo(lada);
 
     }
+    private static void printInfo(Transport transport) {
+        System.out.println("Информация по автомобилю: " + transport.getBrand() + " " + transport.getModel());
+        System.out.println("Водитель: " + transport.getDrivers());
+        System.out.println("Механик: " + transport.getMechanics());
+    }
+
 }
