@@ -48,23 +48,36 @@ public class Main {
                 zilBull, eurotent, gazel,zil,
                 uno, duo, tres, quatro
         );
-        for (Transport transport : transports) {
+        /*for (Transport transport : transports) {
             System.out.println(transport);
-        }
+        }*/
 
         List<Driver> drivers = List.of(
                 b, c, d
-        ); for (Driver value : drivers) {
+        );
+        /*for (Driver value : drivers) {
             System.out.println(value);
+        }*/
+
+        Map<Transport, Mechanic> hashMap = new HashMap<Transport, Mechanic>();
+        hashMap.put(lada, m1);
+        hashMap.put(audi, m2);
+        hashMap.put(bmv, m1);
+        hashMap.put(bmv, m1);
+        hashMap.put(zilBull, m3);
+        hashMap.put(eurotent, m3);
+        hashMap.put(gazel, m2);
+        hashMap.put(zil,m2);
+        hashMap.put(uno, m3);
+        hashMap.put(duo, m2);
+        hashMap.put(tres, m1);
+        hashMap.put(quatro, m3);
+
+        for (Map.Entry<Transport, Mechanic> entry: hashMap.entrySet()) {
+            System.out.println(entry.getValue() + ", автомобиль " + entry.getKey());
         }
 
-        List<Mechanic> mechanics = List.of(
-                m1, m2, m3
-        ); for (Mechanic value : mechanics) {
-            System.out.println(value);
-        }
-
-        printInfo(lada);
+        //printInfo(lada);
 
     }
     private static void printInfo(Transport transport) {
