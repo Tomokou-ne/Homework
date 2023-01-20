@@ -42,7 +42,6 @@ public class Main {
         lada.addDriver(b);
         lada.addMechanic(m2);
 
-
         List<Transport> transports = List.of(
                 lada, audi, bmv, kia,
                 zilBull, eurotent, gazel,zil,
@@ -52,14 +51,14 @@ public class Main {
             System.out.println(transport);
         }*/
 
-        List<Driver> drivers = List.of(
-                b, c, d
-        );
-        /*for (Driver value : drivers) {
-            System.out.println(value);
-        }*/
+        Set<Driver> hashSet = new HashSet<>();
+        hashSet.add(b);
+        hashSet.add(c);
+        hashSet.add(d);
+        hashSet.add(c);
+        System.out.println(hashSet);
 
-        Map<Transport, Mechanic> hashMap = new HashMap<Transport, Mechanic>();
+        /*Map<Transport, Mechanic> hashMap = new HashMap<Transport, Mechanic>();
         hashMap.put(lada, m1);
         hashMap.put(audi, m2);
         hashMap.put(bmv, m1);
@@ -77,7 +76,7 @@ public class Main {
             System.out.println(entry.getValue() + ", автомобиль " + entry.getKey());
         }
 
-        //printInfo(lada);
+        //printInfo(lada);*/
 
     }
     private static void printInfo(Transport transport) {
