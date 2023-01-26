@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 public class Main {
     public static void main(String[] args) {
 
-        Predicate<Integer> predicate = new Predicate<Integer>() {
+        Predicate<Integer> predicate = new Predicate<>() {
             @Override
             public boolean test(Integer integer) {
                 return integer > 0;
@@ -21,7 +21,7 @@ public class Main {
 
         System.out.println("-------------------------------------");
 
-        Consumer<String> consumer = new Consumer<String>() {
+        Consumer<String> consumer = new Consumer<>() {
             @Override
             public void accept(String s) {
                 System.out.println("Greetings " + s);
@@ -34,7 +34,7 @@ public class Main {
 
         System.out.println("-------------------------------------");
 
-        Function<Double, Long> function = new Function<Double, Long>() {
+        Function<Double, Long> function = new Function<>() {
             @Override
             public Long apply(Double aDouble) {
                 return aDouble.longValue();
@@ -42,12 +42,12 @@ public class Main {
         };
         System.out.println(function.apply(958462.999));
 
-        Function<Double, Long> doubleLongFunction = x -> x.longValue();
+        Function<Double, Long> doubleLongFunction = Double::longValue;
         System.out.println(doubleLongFunction.apply(6584.69));
 
         System.out.println("-------------------------------------");
 
-        Supplier<Integer> supplier = new Supplier<Integer>() {
+        Supplier<Integer> supplier = new Supplier<>() {
             @Override
             public Integer get() {
                 return (int) (Math.random() * 100);
