@@ -1,8 +1,8 @@
 package Task;
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Task {
+public abstract class Task {
     private int idGenerator;
     private String title;
     private Type type;
@@ -13,7 +13,11 @@ public class Task {
     public Task(int idGenerator, String title, Type type, int id, LocalDateTime dateTime, String description) {
         this.idGenerator = idGenerator;
         this.title = title;
-        this.type = type;
+        if (type.equals("work") || type.equals("personal")) {
+            this.type = type;
+        } else {
+            System.out.println("type is missing");
+        }
         this.id = id;
         this.dateTime = dateTime;
         this.description = description;
@@ -23,7 +27,12 @@ public class Task {
         return id;
     }
 
-    /*public Task.Type getType() {
+    /*public Type getType() {
+        if (type.equals("work") || type.equals("personal")) {
+            this.type = type;
+        } else {
+            System.out.println("type is missing");
+        }
         return type;
     }*/
 
@@ -47,5 +56,6 @@ public class Task {
         return dateTime;
     }
 
-
+    public abstract boolean appearsIn();
+    //paste @@LocalDate
 }
