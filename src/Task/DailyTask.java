@@ -1,14 +1,20 @@
 package Task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class DailyTask extends Task{
-    public DailyTask(int idGenerator, String title, Type type, int id, LocalDateTime dateTime, String description) {
-        super(idGenerator, title, type, id, dateTime, description);
+public class DailyTask extends Task {
+    public DailyTask(String title, Type type, String dateTime, String description) {
+        super(title, type, LocalDateTime.parse(dateTime), description);
     }
 
     @Override
-    public boolean appearsIn() {
-        return Math.random() > 0.45;
+    public boolean appearsIn(LocalDate localDate) {
+        LocalDate taskDate = this.getDateTime().toLocalDate();
+        return localDate.equals(taskDate) || localDate.isAfter(taskDate);
     }
+
+
 }
+
+

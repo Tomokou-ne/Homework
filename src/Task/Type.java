@@ -1,23 +1,14 @@
 package Task;
-
-public class Type {
-    public enum TypeTask {
+public enum Type {
         WORK("work"),
         PERSONAL("personal");
         private String type;
-        TypeTask(String type) {
-        this.type = type;
+        Type(String type) {
+        if (type.equals("work") || type.equals("personal")) {
+            this.type = type;
+        } else {
+            this.type = "enter type";
+        }
         }
     }
 
-   /* @Override
-    public String toString() {
-        for (TypeTask t : TypeTask.values()) {
-            return TypeTask.valueOf();
-        }
-        return null;
-    }*/
-    /*Type work;
-    values() type types[] = type.values();
-    valueOf() work = type.valueOf*/
-}

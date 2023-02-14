@@ -1,14 +1,16 @@
 package Task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OneTimeTask extends Task{
-    public OneTimeTask(int idGenerator, String title, Type type, int id, LocalDateTime dateTime, String description) {
-        super(idGenerator, title, type, id, dateTime, description);
+    public OneTimeTask(String title, Type type, String dateTime, String description) {
+        super( title, type, LocalDateTime.parse(dateTime), description);
     }
 
     @Override
-    public boolean appearsIn() {
-        return false;
+    public boolean appearsIn(LocalDate localDate) {
+        return localDate.equals(this.getDateTime().toLocalDate());
     }
+
 }
