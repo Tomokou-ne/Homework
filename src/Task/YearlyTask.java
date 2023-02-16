@@ -1,6 +1,5 @@
 package Task;
 
-import java.lang.annotation.Repeatable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -19,6 +18,6 @@ public class YearlyTask extends Task{
 
     @Override
     public Repeatable repeat() {
-        return null;
+        return Repeatable.YEARLY;
     }
 }

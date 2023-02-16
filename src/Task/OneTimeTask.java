@@ -1,6 +1,5 @@
 package Task;
 
-import java.lang.annotation.Repeatable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -16,7 +15,7 @@ public class OneTimeTask extends Task{
 
     @Override
     public Repeatable repeat() {
-        return null;
+        return Repeatable.ONE_TIME;
     }
 
 }

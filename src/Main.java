@@ -5,20 +5,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class
 Main {
     private static final Schedule SCHEDULE = new Schedule();
-    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyyHHmm", Locale.ENGLISH);
+    //
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        SCHEDULE.addTask(new OneTimeTask("Tea", Type.WORK, "18.02.2023 15:45", "go home"));
-        SCHEDULE.addTask(new DailyTask("Tea", Type.WORK, "18.02.2023 15:45", "go home"));
-        SCHEDULE.addTask(new WeeklyTask("Tea", Type.WORK, "18.02.2023 15:45", "go home"));
-        SCHEDULE.addTask(new MounthlyTask("Tea", Type.WORK, "18.02.2023 15:45", "go home"));
-        SCHEDULE.addTask(new YearlyTask("Tea", Type.WORK, "18.02.2023 15:45", "go home"));
+        SCHEDULE.addTask(new OneTimeTask("Tea", Type.WORK, LocalDateTime.now().plusHours(8), "go home"));
+        SCHEDULE.addTask(new DailyTask("Tea", Type.WORK, LocalDateTime.now().plusHours(10), "go home"));
+        SCHEDULE.addTask(new WeeklyTask("Tea", Type.WORK, LocalDateTime.now().minusHours(4), "go home"));
+        SCHEDULE.addTask(new MounthlyTask("Tea", Type.WORK, LocalDateTime.now().minusHours(10), "go home"));
+        SCHEDULE.addTask(new YearlyTask("Tea", Type.WORK, LocalDateTime.now().plusHours(1), "go home"));
         addTask(scanner);
         printTaskForDate(scanner);
     }
@@ -80,8 +82,8 @@ Main {
         while (true) {
             try {
                 System.out.println("Choose task type: ");
-                for (Type Type : Type.values()) {
-                    System.out.println(Type.ordinal() + ". " + localizeType(type));
+                for (Type type : Type.values()) {
+                    System.out.println(type.ordinal() + ". " + localizeType(type));
                 }
                 System.out.println("Enter task type: ");
                 String ordinalLine = scanner.nextLine();
@@ -109,7 +111,7 @@ Main {
     private static LocalDateTime readDateTime(Scanner scanner) {
         while(true) {
             try {
-                System.out.println("Enter date&time using dd.MM.yyyy HH:mm");
+                System.out.println("Enter date&time using dd.MM.yyyy HH:mm without symbols&space");
                 String dateLine = scanner.nextLine();
                 return LocalDateTime.parse(dateLine, dtf);
             } catch (DateTimeParseException e) {
@@ -122,7 +124,7 @@ Main {
         Collection<Task> taskForDate = SCHEDULE.getDateTask(LocalDate.from(localDateTime));
         System.out.println("Tasks for " + localDateTime.format(dtf));
         for (Task task : taskForDate) {
-            System.out.println("%d. %s [%s](%s)%n",
+            System.out.printf("%d. %s [%s](%s)%n",
                     task.getId(),
                     task.getTitle(),
                     localizeType(task.getType()),
@@ -133,7 +135,7 @@ Main {
     private static void removeTask(Scanner scanner) {
         System.out.println("Tasks: ");
         for (Task task : SCHEDULE.getAllTasks()) {
-            System.out.println("%d. %s [%s](%s)%n",
+            System.out.printf("%d. %s [%s](%s)%n",
                     task.getId(),
                     task.getTitle(),
                     localizeType(task.getType()),
