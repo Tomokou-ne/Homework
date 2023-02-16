@@ -23,6 +23,7 @@ Main {
         SCHEDULE.addTask(new YearlyTask("Tea", Type.WORK, LocalDateTime.now().plusHours(1), "go home"));
         addTask(scanner);
         printTaskForDate(scanner);
+        removeTask(scanner);
     }
     private static void addTask(Scanner scanner) {
         String title = readString("Enter task's name: ", scanner);
