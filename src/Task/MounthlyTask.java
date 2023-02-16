@@ -1,11 +1,12 @@
 package Task;
 
+import java.lang.annotation.Repeatable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class MounthlyTask extends Task{
-    public MounthlyTask(String title, Type type, String dateTime, String description) {
-        super( title, type, LocalDateTime.parse(dateTime), description);
+    public MounthlyTask(String title, Type type, LocalDateTime dateTime, String description) {
+        super( title, type, dateTime, description);
     }
 
 
@@ -13,5 +14,10 @@ public class MounthlyTask extends Task{
     public boolean appearsIn(LocalDate localDate) {
         LocalDate taskDate = this.getDateTime().toLocalDate();
         return taskDate.equals(localDate) || (localDate.isAfter(taskDate) && localDate.getDayOfMonth() == taskDate.getDayOfMonth());
+    }
+
+    @Override
+    public Repeatable repeat() {
+        return null;
     }
 }

@@ -1,11 +1,13 @@
 package Task;
 
+
+import java.lang.annotation.Repeatable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class DailyTask extends Task {
-    public DailyTask(String title, Type type, String dateTime, String description) {
-        super(title, type, LocalDateTime.parse(dateTime), description);
+    public DailyTask(String title, Type type, LocalDateTime dateTime, String description) {
+        super(title, type, dateTime, description);
     }
 
     @Override
@@ -14,6 +16,10 @@ public class DailyTask extends Task {
         return localDate.equals(taskDate) || localDate.isAfter(taskDate);
     }
 
+    @Override
+    public Repeatable repeat() {
+        return null;
+    }
 
 }
 

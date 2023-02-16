@@ -1,24 +1,21 @@
 package Task;
 
+import java.lang.annotation.Repeatable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public abstract class Task {
+public abstract class Task implements Comparable<Task>{
 
     private String title;
-    private Type type;
-    private int id;
-    private LocalDateTime dateTime;
+    private final Type type;
+    private final int id;
+    private final LocalDateTime dateTime;
     private String description;
     private static int counter;
 
     public Task(String title, Type type, LocalDateTime dateTime, String description) {
         this.title = title;
-        if (type.equals("work") || type.equals("personal")) {
-            this.type = type;
-        } else {
-            System.out.println("type is missing");
-        }
+        this.type = type;
         id = ++counter;
         this.dateTime = dateTime;
         this.description = description;
@@ -54,6 +51,12 @@ public abstract class Task {
 
     public abstract boolean appearsIn(LocalDate localDate);
 
-    //public abstract boolean repeat(Repeatable);
+    public abstract Repeatable repeat();
+
+    public int compareTo(Task otherTask) {
+        if (otherTask == null) {
+            return 1;
+        } return this.dateTime.toLocalTime().compareTo(otherTask.dateTime.toLocalTime());
+    }
 
 }
